@@ -86,9 +86,7 @@ return data
     };
 
 galleryList.innerHTML = createGalleryMarkup(images);
-galleryList.addEventListener('click', event => {
-    event.preventDefault();
-});
+galleryList.addEventListener('click', onImageClick);
 
 /**
  * Реалізуємо прийом делегування при кліку на image
@@ -97,11 +95,13 @@ galleryList.addEventListener('click', event => {
 galleryList.addEventListener('click', onImageClick);
 
 function onImageClick (event){
-    event.preventDefault();
+
     const itemImg = event.target;
     if (!itemImg.classList.contains('gallery-image')){
         return;
     }
+
+    event.preventDefault();
 
     const largeImage = itemImg.dataset.source;
     console.log(largeImage);
@@ -113,6 +113,6 @@ function onImageClick (event){
     const instance = basicLightbox.create(`<img src="${largeImage}" alt="${itemImg.alt}" width="800" height="auto">`)
     
     instance.show()
-}
+};
 
 
